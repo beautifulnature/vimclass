@@ -72,3 +72,130 @@ her.
 
 This training is being provided by LinuxTrainingAcademy.com.
 
+If you want to redraw the screen press `z<ENTER>`
+
+to go to first character of a line press `^`
+
+`<Ctrl>g` to get the information about line position and characters.
+`g<Ctrl>g` to get more information about line position and characters.
+to set ruler `:set ruler` will display line number and column number.
+to set ruler off `:set noruler`
+vim options can be set using the command `:set`
+vim options pattern, option like `ruler` to set use `ruler` if you want to set off just prefix with `no` like `noruler`
+another good pattern is using `!` at the end of option to toggle.
+
+# essential navigation commands
+
+Goal:
+
+The goal of this exercise is to practice moving around within a file.
+
+instructions:
+
+open the nav.txt file
+
+first, start a command line session on your local machine.
+next, use vim to open `nav.txt` file that came in the course downloads.
+To do that, navigate to the location of the file.
+Remember this could be different for you depending on where you extracted the contents of the file.
+This example assumes the course download was saved into your downloads folder and extrated from there.
+
+```cd downloads
+cd vimclass
+vim nav.txt```
+
+practice moving the cursor by one line or one character
+
+press the `j` key 10 times to move down 10 lines.
+this will move you down to this line in the file.
+
+you can also press and hold a navigation key so that it repeats.
+
+press `k` 4 times to move up 4 lines.
+this will the cursor to the beginning of this line.
+
+to move to the right, press l.
+
+press the l key 8 times to move to the word to.
+
+press the j key 2 times to this line.
+
+to move to the left, press "h".
+
+notice how the cursor is in the same column.
+(the cursor is the same distance from the left of the line as it was before.)
+
+now move the cursor to the begining of the line by pressing the h key to that it repeats.
+
+finally, move the cursor to the very top of the file by pressing and holding the k key so that it repeats.
+
+practice mvoing the cursor by page.
+
+press ctrl + f to move down one page.
+press ctrl + b to move back up one page.
+
+hold down the ctrl key and press f as many times as needed to get to the bottom of the file.
+the number of times you need to page down wil vary based on the size of your screen.
+remember that the tildes represents lines beyond the end of the file.
+
+this is what it might look like when you get to the bottom of the file.
+(again, this will vary based on your screen size.)
+notice th tildes.
+
+this training is being provided by LinuxTrainingAcademy.com.
+~
+~
+~
+~
+~
+~
+~
+~
+
+move up one page by holding down the ctrl key and pressing b.
+
+practice moving the cursor by word
+
+place your cursor at the begining of the following line.
+one easy way to do this would be to press and hold the k key until you reach the line.
+if you go above it, return to the line by pressing j.
+
+far far away, behind the wild mountains, far from the countries vokalia and
+
+press lowercase w 4 times.
+your cursor will be at the first comma(,) in the line.
+press lowercase w 5 more times.
+your cursor will now be at the second comma (,) in the line.
+
+move back to the first word in the sentence (Far) by pressing the lowercase b key 8 times.
+notice how it also considers the comma to be a word.
+
+now move forward to the word "behind" by pressing uppercase W 3 times.
+notice how your cursor does not stop at the comma.
+move forward to the word far by pressing uppercase W 4 more times.
+
+return to the first word of the line by repeatedly pressing uppercase B.
+you'll need to press B 7 times to do this.
+
+practice moving the cursor to the specific line number
+go to the first line in the file by typing gg.
+go to the last line in the file by typing uppercase G.
+go back to the first line by typing 1gg.
+notice how it does the same thing as gg.
+now, go to line 29 by typing 29gg.
+
+you can also use G to go to a specific line number.
+go to line 3 by typing 3G.
+
+now use the line mode to move to line 44.
+type :44<ENTER>.
+now move to the last line in the file by typing :$<ENTER>
+
+confirm that you are indeed on the last line by typing Ctrl + g and displaying information about the file you're editing.
+(you should see 100% displayed on the status line.)
+
+your turn
+if you're up to it, have some fun navigating around the file using what you know.
+
+quit vim
+when you are done practicing your file navigation skills, quit with :q!<ENTER>.
