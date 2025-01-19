@@ -1,9 +1,10 @@
 You can use this file to practice editing.
 
-First, fix this spelling mistakke.
-Fixx theese allso.
+First, fix this spelling mistake.
+Fix these also.
 Delete this text with the X command.
-This this training training is is provided provided by LinuxTrainingAcademy.com.
+
+This this training is provided provided by LinuxTrainingAcademy.com.
 This training is provided by LinuxTrainingAcademy.com.
 Here is another line of text.
 Guess what?  Here is even more text!
@@ -73,3 +74,39 @@ again and again. And if she hasn't been rewritten, then they are still using
 her.
 
 This training is being provided by LinuxTrainingAcademy.com.
+
+# deleting text
+
+in normal mode:
+deleting character press `x`
+deleting before cursor upperase `X` acts like backspace
+deleting a line press `dd`
+deleting a word `dw`
+deleting a number of words `d3w`
+deleting number of lines `d3j` from current cursor position
+`d0` deleting from current cursor position to starting of the line
+`d$` deleting from current cursor position to end of the line
+`D` upperase `D` is shortcut for `d$`
+
+operation{motion}
+dw
+
+d = the delete operation
+w = the word motion
+
+[count]opertion{motion}
+5dw
+5 = the count / how many times to repeat
+dw = the command (delete word)
+
+possibilities: but you can use what is simple to you
+
+3w = repeat word motion 3 times
+d3w = delete 3w motion
+2d3w = repeat 2 times delete 3w motion
+
+period `.` will repeat previously typed command
+`:w` - to save the changes write to disk
+`:wq` - combine `:wq` for write and quit
+`:q` - to quit the file, if any changes are there vim giving warning message
+`:q!` - quit without asking

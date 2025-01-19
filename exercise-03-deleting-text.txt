@@ -1,0 +1,158 @@
+# deleting text
+
+Goal:
+the goal of this exercise is to practice deleting text in a file.
+you'll also practice the [count][operation]{motion} pattern.
+
+instructions:
+
+open the practicedeleting.txt file
+
+first, start a command line session on your local machine.
+next, use vime to open the `practicedeleting.txt` file that came in the course downloads.
+to do that, navigate to the location of the file.
+remember this coud be different for you depending on where you extracted the contents of the file.
+this example assumes the course download was saved into your donwloads folder and extracted from there.
+
+cd downloads
+cd vimclass
+vim practicedeleting.txt
+
+practice deleting individual characters
+
+move to the 3rd line of the file.
+remember, you can do this in a few different ways.
+you can press the j key until you're there, you can use 3gg, 3G, or :3<ENTER>
+
+remove the extra k in the word mistakke by positioning your cursor under one of the additional letters and hit  key.
+here is what the sentence looks like before you edit.
+
+first, fix this spelling mistakke.
+
+here is what it looks like after.
+
+first, fix this spelling mistake.
+
+move to the 4th line of the file.
+remove the repeated letters from each of the words.
+use x to delete the character under your cursor to do so.
+here is what the sentence looks like before:
+
+fixx theese allso.
+
+after you delete the additional x, e and l, it will look like this:
+
+fix these also.
+
+move down to the next line:
+delete this text with the X command.
+
+position your cursor at the end of the line.
+you can repeatedly press the l key, or if you want to be really efficient you can use the $ key.
+now delete all the text you can with X key.
+you'll find that only the period remains on the line.
+
+.
+
+to delete that character, press x.
+now the line is empty.
+
+practice deleting motions
+
+move down to the next line:
+
+who let the dogs out? cats
+
+position your cursor one character right of the question mark.
+your cursor will be in the space between ? and cats.
+delete the remaining text on the line.
+you can use d$, or an even shorter version of the command D.
+After your edit, the line will look like the following:
+
+who let the dogs out?
+
+now position the cursor at the beginning of the line 43. (hint 43gg works)
+delete the first word of the line with d operator.
+remember the pattern [count][operation]{motion}.
+to delete that first word you can use dw or even dW.
+here is the line before the first word is deleted.
+
+far far away, behind the wild mountains, far from the countries vokalia and
+
+here is the line after the word is deleted.
+
+far away, behind the wild mountains, far from the countries vokalia and
+
+delete the second word, too.
+now the line looks like so:
+
+away, behind the wild mountains, far from the countries vokalia and
+
+delete the text away with two keystrokes.
+remember that the w motion will stop at punctuation while W motion ignores punctuation and stops the cursor after white space.
+so to delete away in two keystrokes you use dW.
+now the line looks like this:
+
+behind the wild mountains, far from the countries vokalia and
+
+position your cursor at the beginning of the first occurence of the word the.
+delete the first word in the sentence using an operator and a motion.
+to do that, type db.
+you could have also used dB.
+here is how the line appears now:
+
+the wild mountains, far from the countries vokalia and
+
+now, delete words the wild. one way to do this is to use 2dw.
+
+mountains, far from the countries vokalia and
+
+now delete "mountains, far".
+a motion that moves your just past "mountains, far" is 2W.
+so, use d2W to delete the text.
+this is what remains on the line, now:
+
+from the countries vokalia and
+
+practice deleting lines:
+
+delete the line by using dd.
+your cursor is now placed on this line:
+
+consonantia, ther live the blind texts. separated they live in bookmarksgrove
+
+to delete multiple lines use, [count]dd.
+let's delete these lines:
+
+consonantia, ther live the blind texts. separated they live in bookmarksgrove
+right at the coast of the semantics, a large language ocean.
+
+A small river named Duden flows by their place and supplies it with the
+necessary regelialia. it is a paradisematic country, in which roasted parts of
+sentences fly into your mouth.
+
+notice that there are 3 lines in total.
+one line begins with consonantia, the next with right and the third line is blank and doesn't have any text at all.
+to delete those 3 lines, use 3dd.
+now your cursor is placed on this line.
+
+A small river named Duden flows by their place and supplies it with the
+
+delete the next three lines by using one keystroke.
+simply type a period and the previous command will be repeated.
+whe you press `.` the following three lines will be deleted:
+
+A small river named Duden flows by their place and supplies it with the
+necessary regelialia. it is a paradisematic country, in which roasted parts of
+sentences fly into your mouth.
+
+save your work (or not!)
+
+if you wnat to save your changes and keep vim running, you can use `:w<ENTER>`.
+to save your changes and immediately exit, type `:wq<ENTER>`.
+if you wnat to abandon your changes, use `:q!<ENTER>`.
+it's up to you.
+
+your turn
+
+if you're up to it, have some fun deleting text in the file using what you know.

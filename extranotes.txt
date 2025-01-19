@@ -1,0 +1,5 @@
+# ~/.vimrc configuations
+nnoremap X X #`n`-normal mode `noremap`-non-recursive map `X`-LHS X for key to map `X`-RHS X for original vim behaviour of X i.e. deleting character before cursor
+
+u for undo
+Ctrl+R to redo the change that was undone.
