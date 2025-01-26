@@ -1,0 +1,1 @@
+for example to search for the first occurence of the string foo and this is the second foo in the current line and replace it with bar
