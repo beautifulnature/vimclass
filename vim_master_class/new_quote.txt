@@ -1,1 +1,5 @@
+this is apache license
+
 knowledge is power
+
+this is new_quote.txt
