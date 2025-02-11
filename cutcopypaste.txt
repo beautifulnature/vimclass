@@ -194,3 +194,97 @@ Next yank those two words, including the puctuation, into the default register w
 Next, paste them before your current cursor position with P.
 
 I really, really, really, really, love vim!
+
+Use the numbered registers
+
+Put the text "TODO" above any lines in the file that start with "Fix this".
+Also, delete any lines that read "Delete this".
+Start at your current cursor position and work your way down throgh the file mixing your deletes and puts.
+
+First, yank the line that reads "TODO" with yy.
+Next delete the two lines that read "Delete this" with 2dd.
+Position your cursor on the line that reads "Fix this" and paste "TODO" above it.
+To do that you'll need to use the "0 register which contains the most recent yanked text.
+Type "0P.
+Repeat this process until all the "Fix" lines have "TODO" above them and all the "Delete" lines are deleted.
+
+Use named registers
+
+Place the followig line in the "j register:
+
+Yank this line into the "j register.
+
+Position your cursor anywhere on the line an type "jyy
+
+Now place the following line in the "f register
+
+Yank this line into the "f register.
+
+Position your cursor anywhere on the line and type "fyy.
+
+Next put the contents of the "j register below this line with "jp:
+
+Put the contents of the "j register below:
+
+Next put the contents of the "f register below this line with "fp:
+
+Put the contents of the "f register below:
+
+Put the contents of the "f register below:
+
+Append the following line to the "j register.
+
+Place your cursor anywhere on the line an type "Jyy. (Notice the capital J).
+
+Append the following line to "f register:
+
+Append this line to the "f register.
+
+Place your cursor anywhere on the line and type "Fyy. (Notice the capital F).
+
+Look at the contents of all the registers with :reg<ENTER>.
+If you only want to view the "j and "f registers, use :reg jf<ENTER>
+
+Now put the contents of the "j register below this line with "jp:
+
+Put the contents of the "j register below:
+
+Next put the contents of the "f register below this line with "fp:
+
+Put the contents of the "f register below:
+
+Undo and Redo
+
+Delete the following three lines:
+ONE)
+TWO)
+THREE)
+
+You can do that by positioning your cursor on the first line and typing 3dd.
+Undo your deletion by typing u.
+Notice how all three of the lines return.
+
+Redo your command with Ctrl+r.
+Now the three lines are removed again.
+
+Insert a new line into the file.
+First enter insert mode with i.
+Now type any sentence into vim.
+For example, you could use this sentence:
+
+Vim is fun!
+
+Press <Escape> to return to normal mode.
+To undo your text insertion type u.
+Now redo your text insertion with Ctrl+r.
+
+Your turn
+
+I encourage you to experiment and come up with some of your own practice execises.
+Better yet...
+Do you have a file that needs editing?
+Open it up in vim and try using some of your delete, yank, and put skills!
+
+Exit out of vim
+
+If you want to abandon your changes so you can try this practice exercise again, use :q!<ENTER>.

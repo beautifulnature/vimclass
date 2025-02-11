@@ -23,44 +23,39 @@ I really, really, really, really, love vim!
 
 TODO
 Fix this
-Delete this
-Delete this
 
+TODO
 Fix this
-Delete this
-Delete this
-Delete this
 
+TODO
 Fix this
-Delete this
-Delete this
 
+TODO
 Fix this
-Delete this
-Delete this
-Delete this
 
+TODO
 Fix this
-Delete this
-Delete this
 
 Yank this line into the "j register.
 Yank this line into the "f register.
 
 Put the contents of the "j register below:
+Yank this line into the "j register.
 
 Put the contents of the "f register below:
+Yank this line into the "f register.
 
 Append this line to the "j register.
 Append this line to the "f register.
 
 Put the contents of the "j register below:
+Yank this line into the "j register.
+Append this line to the "j register.
 
 Put the contents of the "f register below:
+Yank this line into the "f register.
+Append this line to the "f register.
 
-ONE)
-TWO)
-THREE)
-
+Vim is fun!
 
 This training is being provided by LinuxTrainingAcademy.com.
