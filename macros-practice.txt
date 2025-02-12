@@ -2,10 +2,10 @@
 # Before: print "Macros are very fun!"
 # After:  print("Macros are very fun!")
 
-print "Macros are very fun!"
-print "Macros are powerful."
-print "Macros use registers to store keystrokes."
-print "I'm so glad Vim has Macros!"
+print("Macros are very fun!")
+print("Macros are powerful.")
+print("Macros use registers to store keystrokes.")
+print("I'm so glad Vim has Macros!")
 
 ################################################################################
 # Before: jason
@@ -21,56 +21,56 @@ ava
 # Before: 2798265253
 # After:  (279) 826-5253
 
-2798265253
-6189034410
-1484945696
-4317906896
-2799430841
-1047478277
-6916410205
-3355819338
-5909236283
-2596559739
-8786805143
-5013328873
-7999514683
-4117838228
-9619739991
-8958276012
-9859346956
-3396189061
-1901204747
-8908085062
-5469255241
-9207001354
-2135694193
-4083018809
-9307531230
-8602990709
-7041571881
-3025976131
-3253417438
-2178283221
-2851396731
-7497215331
-5911931954
-7546225372
-7152074664
-2037462294
-2605323972
-5724916411
-2433503994
-6588636629
-3519232904
-9968775123
-5588989433
-8744437153
-2746440780
-1915053283
-6043090832
-8768871331
-8939255738
-9711410096
+(279) 826-5253
+(618) 903-4410
+(148) 494-5696
+(431) 790-6896
+(279) 943-0841
+(104) 747-8277
+(691) 641-0205
+(335) 581-9338
+(590) 923-6283
+(259) 655-9739
+(878) 680-5143
+(501) 332-8873
+(799) 951-4683
+(411) 783-8228
+(961) 973-9991
+(895) 827-6012
+(985) 934-6956
+(339) 618-9061
+(190) 120-4747
+(890) 808-5062
+(546) 925-5241
+(920) 700-1354
+(213) 569-4193
+(408) 301-8809
+(930) 753-1230
+(860) 299-0709
+(704) 157-1881
+(302) 597-6131
+(325) 341-7438
+(217) 828-3221
+(285) 139-6731
+(749) 721-5331
+(591) 193-1954
+(754) 622-5372
+(715) 207-4664
+(203) 746-2294
+(260) 532-3972
+(572) 491-6411
+(243) 350-3994
+(658) 863-6629
+(351) 923-2904
+(996) 877-5123
+(558) 898-9433
+(874) 443-7153
+(274) 644-0780
+(191) 505-3283
+(604) 309-0832
+(876) 887-1331
+(893) 925-5738
+(971) 141-0096
 
 ################################################################################
 # Before: Jan 13 09:57:01 www1 kernel: [3947771.808744] [BLOCK] IN=eth0 OUT= MAC=e6:e9:2d:04:b6:95:3c:8a:b0:0d:6f:f0:08:00 SRC=190.18.193.152 DST=2.5.9.1 LEN=40 TOS=0x02 PREC=0x00 TTL=51 ID=25120 PROTO=TCP SPT=12502 DPT=23 WINDOW=4078 RES=0x00 SYN URGP=0
@@ -92,7 +92,7 @@ Jan 13 10:00:26 www1 kernel: [3947976.555062] [BLOCK] IN=eth0 OUT= MAC=e6:e9:2d:
 #         Country China
 #         1,380,950,000 people
 #
-# After: 
+# After:
 #         1,380,950,000;China
 
 Country China
@@ -117,3 +117,173 @@ Country Brazil
 <a href="#">@armyspy.com</a><a href="#">@cuvox.de</a><a href="#">@dayrep.com</a><a href="#">@einrot.com</a><a href="#">@fleckens.hu</a><a href="#">@gustr.com</a><a href="#">@jourrapide.com</a><a href="#">@rhyta.com</a><a href="#">@superrito.com</a><a href="#">@teleworm.us</a>
 
 This training is provided by LinuxTrainingAcademy.com.
+
+Macros
+
+Goal:
+
+The goal of this exercise is to practice creating and using macros.
+
+Instructions:
+
+Open the macros-practice.txt file
+
+First, start a command line session on your local machine.
+Next, use vim to open the "macros-practice.txt" file that came in the course downloads.
+To do that, navigate to the location of the file.
+Remember this could be different for you depending on where you extracted the contents of the file.
+This example assumes the course download was saved into your Downloads folder and extracted from there.
+
+cd Downloads
+cd vimclass
+vim macros-practice.txt
+
+Convert Old Python code to New Python Code
+
+Let's say you have some old Python code (version 2.6 or earlier) that needs to be updated to work with the new Python interpreter (version 3.0 or later).
+The print statement was replaced with the print() function.
+That means you'll need to change the following line from this:
+
+Let's change the following line from this:
+
+print("Macros are very fun!")
+
+To this
+
+print "Macros are very fun!"
+
+Let's do this with a macro.
+By the way, it's not important to know anything about Python.
+The goal here is to give you a practical example for you to practice you Vim macros skills with.
+
+Here is one way to accomplish this task:
+
+. Place your cursor on the line that reads: print "Macros are very fun!"
+. Start recording into the "a register with qa
+
+. Normalise your cursor position to the beginning of the line by typing 0.
+
+. Position the cursor at the next space with f<SPACE>
+
+. Replace the space with an opening parenthesis with r(.
+
+. Append a closing parenthesis to the line with A) and press <ESCAPE> to return to normal mode.
+
+. Now position the cursor on the next line with j so the macro can be easily repeated.
+
+. Finally type q to stop recording the macro.
+
+You can examine the contents of your macro by looking at the "a register with :reg a<ENTER>.
+Here is what it should look like:
+
+0f r(A)€ýaj
+
+Play your macro on the next line by typing @a.
+Use @@ to repeat the macro on.
+Continue repeating the macro with @@ on the remaining print statements.
+
+NOTE: The solution provided above is not the only way to accomplish the task!
+One simple example replace f<SPACE> with t" in the macro.
+Both perform the same act of positioning the cursor under the space.
+As lone as you get the desired results you're after, that's all that matters.
+
+Create a shell script from a list.
+
+The goal is to turn this text:
+
+jason
+sophia
+jack
+emma
+ava
+
+into this:
+
+passwd -l jason && echo jason >> locked_users.txt
+passwd -l sophia && echo sophia >> locked_users.txt
+passwd -l jack && echo jack >> locked_users.txt
+passwd -l emma && echo emma >> locked_users.txt
+passwd -l ava && echo ava >> locked_users.txt
+
+Here is one way to accomplish this task:
+
+. Place your cursor on the line that contains jason
+
+Here is one way to accomplish this task:
+
+. Place your cursor on the line that contains jason
+
+. Start recording inot the "b register with qb
+
+. Yank the user name into the default register with yaw
+
+. Start insert mode at the beginning of the line with I.
+Now type the text "passwd -I" and press <ESCAPE>.
+
+. Next, start insert mode at the end of the line with A and type " && echo ".
+Press <ESCAPE> to return to normal mode.
+
+. Next, paste the contents of the unnamed register after the cursor with p.
+
+. Continue appending by typing a, and then typing ">> locked_users.tx" followed by <ESCAPE>.
+
+. Now position the cursor on the next line with j so the macro can easily repeated.
+
+. Finally type q to stop recording the macro.
+
+You can examine the contents of your macro by looking at the "b register with :reg b<ENTER>.
+Here is what it should look like:
+
+yawIpasswd -l €ýaA && echo €ýapA >> locked_users.txt€ýaj
+
+Plan your macro on the next line by typing @b.
+You can probably see that there are three more items in this list, so use 3@b to repeat the macro four times.
+
+Normalise Phone Numbers
+
+Next, create a macro that changes a United States style phone number from:
+
+2798265253
+
+To:
+
+(279) 826-5253
+
+Here is one way to accomplish this task:
+
+. Place your cursor on the line that contains "2798265253".
+
+. Start recording into the "p register with qp
+
+. Start insert mode at the beginning of the line with I
+
+. Type an opening parenthesis ( and press <ESCAPE> to return to normal mode.
+
+. Position the cursor under the 9 by typing l 3 times.
+
+. Type a to append text after the cursor and type )<SPACE>.
+
+. Position the cursor under the 6 by typing l 3 times.
+
+. Type a- to append a hyphen and press <ESCAPE> to return to normal mode.
+
+. Now position the cursor on the next line with j so the macro can easily repeated.
+
+. Finally type q to stop recording the macro.
+
+You can examine the contents of your macro by looking at the "p register with :reg p<ENTER>.
+Here is what it should look like:
+
+I(llla) llla-j
+
+Because there is a long list of phone numbers that scroll off the bottom of your screen you can't easily know how many times you need to apply the macro.
+Also, repeating @@ could take quite a while.
+So, get the range you need to apply the macro to.
+Turn on line numbering with :set nu<ENTER>.
+Note that your cursor is currently on line 25.
+Now page down to the end of the list of phone numbers with Ctrl+f.
+You'll find the last phone number is on line 73.
+
+Execute the macro over this range using the normal command.
+Type :25,73 normal @p<ENTER>.
+Now check that the macro was executed over that entire range by paging up with Ctrl+b.

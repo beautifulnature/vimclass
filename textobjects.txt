@@ -1,24 +1,15 @@
-This is a sentence comprised of many words.  This is another sentence. A 
-paragraph is made up of multiple sentences.  Just like this one!
+Just like this one!
 
-This is also paragraph.
-No only is it made up of multiple sentences, it's made up of multiple lines.
-This is the last line in this paragraph.
-
-colors = ['red', 'green', 'blue']
-print(colors)
+colors =
+print"asdf"
 <html>
-<p>This is <strong>so, so, very</strong> cool!</p>
-<i_made_this_up>There is text here.</i_made_this_up>
+<p>This is <strong>so</strong> cool!</p>
+<i_made_this_up></i_made_this_up>
 
-scores = {
-  'boars': 6, 
-  'saints': 7,
-  'bandits': 0
-}
+scores = 1
 
-BACKUP_SERVER="deepfreeze01"
-MAIL_SERVER='mail13'
-HOST=`uname -n`
+BACKUP_SERVER="backup"
+MAIL_SERVER='newmail1'
+HOST=``
 
 This training is provided by LinuxTrainingAcademy.com.

@@ -1,8 +1,8 @@
-The Time Traveller (for so it will be convenient to speak of him) was expounding.
+The tourist (as we call him) was expounding.
 
-print("The weatherman said, 'This weekend will be warm,' but that was a lie.")
-print("The weatherman said, 'This weekend will be warm,' but that was a lie.")
-print("The weatherman said, 'This weekend will be warm,' but that was a lie.")
+print
+print("It was cold!")
+print("The weatherman said, 'It is hot outside,' but that was a lie.")
 
 scripts=[ 'bin/backup',
           'bin/backup-all',
@@ -30,11 +30,207 @@ scripts=[ 'bin/backup',
 </CATALOG>
 
 musicians = {
-  'Charlie Parker': 'alto sax', 
-  'John Coltrane': 'tenor sax', 
+  'Charlie Parker': 'alto sax',
+  'John Coltrane': 'tenor sax',
   'Sonny Rollins': 'tenor sax'
 }
 
-Praesent rutrum purus ultricies, dignissim massa id, elementum felis. Vestibulum ullamcorper? Ligula quis pharetra aliquet! Felis ex vulputate justo, non commodo metus tellus ut tortor. Sed et orci quis augue pretium sagittis lobortis non nisi. Cras rhoncus congue est, ut dapibus neque gravida id. Mauris et urna consequat, semper sapien sit amet, sollicitudin enim. Vivamus aliquam erat non eros vehicula dictum. Etiam bibendum posuere leo nec commodo. Fusce in enim fermentum, vulputate odio at, semper sapien. Etiam erat lorem, convallis vel leo ac, euismod accumsan diam. Cras in sapien sed dui dictum imperdiet. Nam vel vehicula nisl.
-
 This training is provided by LinuxTrainingAcademy.com.
+
+Text Objects
+
+Goal:
+The goal of this exercise is to familiarize yourself with Vim's text objects.
+
+Instructions:
+
+Open the textobjectspractice.txt file
+
+First, start a command line session on your local machine.
+Next, use vim to open the "textobjectspractice.txt" file that came in the course downloads.
+To do that, navigate to the location of the file.
+Remember this could be different for you depending on where you extracted the contents of the file.
+This example assumes the course download was saved into your Downloads folder and extracted from there.
+
+cd Downloads
+cd vimclass
+vim textobjectspractice.txt
+
+Word Objects
+
+Position your cursor somewhere in the word "Time" on the first line.
+For example, you could search forward to the nearest i with fi.
+Now, delete the word with daw.
+Notice how the entire word is deleted.
+This is different than deleting with dw.
+
+Next change the word "Traveller" to "tourist".
+To do that use ciw for change inner word and then type "tourist" and press <Escape> to return to normal mode.
+
+Block Object()
+
+Position your cursor to the opening parentheses by typing w.
+Now change the text within the parentheses to read "as we will call him" and press <Escape> to return to normal mode.
+
+Now the first line of the document looks liks this:
+
+The tourist (as we will call him) was expounding.
+
+Move to this line in the file and place your cursor anywhere on or within the parentheses:
+
+print("The weatherman said, 'This weekend will be ware, ' but that was a lie.")
+
+One way to do that would be to forward search for the opening parenthesis: /(<ENTER>.
+Next delete this entire bit of text with a 3 character command: ("The weatherman said, 'This weekend will be warm, ' but that was a lie.") That command is da( or da).
+
+Quoted Strings
+
+Position your cursor on the next line and place it anywhere within double quotes.
+(You can use /"<ENTER>, for example.)
+Change this line:
+
+print("The weatherman said, 'This weekend will be warm, ' but that was a lie.")
+
+To read:
+
+print("It was cold!")
+
+To do so, type ci" and enter "It was cold!" and finally hit the <Escape> key to return to normal mode.
+
+Next, move to the next line, but this time change what appears within the single quotes form 'This weekend will be are,' to 'it is hot outside,'.
+Perform a forward search with /'<ENTER> and then make the change with ci'.
+Type "It is hot outside," and then hit the <Escape> key to return to normal mode.
+
+Block Object[]
+
+Quickly delete all the contents within brackets.
+This is how the text looks before:
+
+scripts=[ 'bin/backup',
+          'bin/backup-all',
+          'bin/backup-db-only',
+          'bin/backup-files-only' ]
+
+This is how it looks after your deletion:
+
+scripts=[]
+
+To do that position your cursor anywhere within the brackets.
+For example, you could use a forward search for "bin": /bin<ENTER>.
+Next, use di[ or di] to delete everything within the bracketed block.
+
+Block Object <>
+
+Mover your cursor to the following line.
+You can use jj.
+
+<yank_me>
+
+Now, place the text within the <> block into the i register.
+Type "iyi<.
+Confirm the text "yank_me" is in the "i register with :reg i<ENTER>
+
+Now, place the text "<yank_me>" including the angle brackets into the "a register.
+Do that with "aya< or "aya>.
+Confirm the text "<yank_me>" is in the "a register with "reg a<ENTER>.
+
+Tag Objects
+
+On the following line change the text "Linux Training Academy" to "LTA".
+Before your edit:
+
+<p><a href="https://linuxtrainingacademy.com">Linu Training Academy</a></p>
+
+After your edit:
+
+<p><a href="https://linuxtrainingacademy.com">LTA</a></p>
+
+Notice the text is inside an <a> HTML tag.
+To change that text, position your cursor anywhere within the <a> tag.
+You could type /h<ENTER>, for example.
+Now type cit, which stands for change inside tag, and type LTA<ESCAPE>.
+
+The next section of text is XML.
+It looks like this:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CATALOG>
+  <CD>
+    <TITLE>Jazz At Massey Hall</TITLE>
+    <ARTIST>The Quintet</ARTIST>
+  </CD>
+  <CD>
+    <TITLE>Blue Train</TITLE>
+    <ARTIST>John Coltrane</ARTIST>
+  </CD>
+  <CD>
+    <TITLE>Saxophone Colossus</TITLE>
+    <ARTIST>Sonny Rollins</ARTIST>
+  </CD>
+</CATALOG>
+
+Your goal is to delete the entire entry for the first CD titled "Jazz At Massey Hall" in the CATALOG.
+After your edit, the text will lokk like this:
+
+<?xml version="1.0" encoding="UTF-8"?>
+<CATALOG>
+  <CD>
+    <TITLE>Blue Train</TITLE>
+    <ARTIST>John Coltrane</ARTIST>
+  </CD>
+  <CD>
+    <TITLE>Saxophone Colossus</TITLE>
+    <ARTIST>Sonny Rollins</ARTIST>
+  </CD>
+</CATALOG>
+
+To delete the <CD> tag position your cursor under the <CD> or </CD> that surrounds the "Jazz At Massey Hall" entry.
+Then type dat, which stands for delete a tag, to remove that entry.
+(NOTE: If you position your cursor else where you will delete one of the nested tags such as <TITLE> or <ARTIST> instead of the entire <CD> tag.)
+
+Block Object {}
+
+Let's say you wnat to change this block of text from:
+
+musicians = {
+  'Charlie Parker': 'alto sax',
+  'John Coltrane': 'tenor sax',
+  'Sonny Rollins': 'tenor sax'
+}
+
+To:
+
+musicians = { }
+
+To do that place your cursor anywhere in the { } block.
+You could perform a forward search to "alto", for example.
+/alto<ENTER>.
+Delete that block with di{ or di}.
+Now your cursor is placed under } and you are left with this:
+
+musicians = {
+}
+
+You can move your cursor to the line above with k and then join the two lines wih J.
+
+Sentence Objects
+
+Yank the next sentence of text into the "s register.
+Position your cursor somewhere in this sentence:
+
+Present rutrum purus ultricies, dignissim massa id, elementum felis.
+
+Notice how this sentence isn't in a real language.
+Remember that vim is looking for text object boundaries, not what is in those boundaries.
+A sentence is defined as ending at a '.', '!' or '?' followed by either the end of a line, or by a space or tab.
+
+To yank this sentence into the "s register, type "syas.
+Confirm the sentence is in the "s register with :reg s<ENTER>.
+
+Paragraph Objects
+
+Now delete the entire paragraph with dap.
+
+Exit out of Vim
+
+If you want to abandon your changes so you can try this practice exercise again, use :q!<ENTER>.
