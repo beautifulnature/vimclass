@@ -95,20 +95,15 @@ Jan 13 10:00:26 www1 kernel: [3947976.555062] [BLOCK] IN=eth0 OUT= MAC=e6:e9:2d:
 # After:
 #         1,380,950,000;China
 
-Country China
-1,380,950,000 people
+1,380,950,000;China
 
-Country India
-1,310,540,000 people
+1,310,540,000;India
 
-Country United States
-324,369,000 people
+324,369,000;United States
 
-Country Indonesia
-260,581,000 people
+260,581,000;Indonesia
 
-Country Brazil
-206,960,000 people
+206,960,000;Brazil
 
 ################################################################################
 # Before: <a href="#">@armyspy.com</a>
@@ -287,3 +282,126 @@ You'll find the last phone number is on line 73.
 Execute the macro over this range using the normal command.
 Type :25,73 normal @p<ENTER>.
 Now check that the macro was executed over that entire range by paging up with Ctrl+b.
+
+Extract Important Data from a Log File
+
+The next set of lines in the file contain system logs from a Linux server.
+Specifically these lines are logs of blocked connection attempts by the local Linux firewall.
+Your goal is to extract the timestamp, the source IP address of the connection attempt, and the destination port.
+
+The sourece IP address follows "SRC=". Example; SRC=190.18.193.152
+The destination port follows "DPT=". Example; DPT=23
+
+This line:
+
+Jan 13 09:57:01 www1 kernel: [3947771.808744] [BLOCK] IN=eth0 OUT= MAC=e6:e9:2d:04:b6:95:3c:8a:b0:0d:6f:f0:08:00 SRC=190.18.193.152 DST=2.5.9.1 LEN=40 TOS=0x02 PREC=0x00 TTL=51 ID=25120 PROTO=TCP SPT=12502 DPT=23 WINDOW=4078 RES=0x00 SYN URGP=0
+
+Will be narrowed down to just this commad separated value line:
+
+Jan 13 09:57:01 www1 kernel: [3947771.808744] [BLOCK] IN=eth0 OUT= MAC=e6:e9:2d:04:b6:95:3c:8a:b0:0d:6f:f0:08:00 SRC=190.18.193.152 DST=2.5.9.1 LEN=40 TOS=0x02 PREC=0x00 TTL=51 ID=25120 PROTO=TCP SPT=12502 DPT=23 WINDOW=4078 RES=0x00 SYN URGP=0
+
+Jan 13 09:57:01,190.18.193.152,23
+
+Here is one way to accomplish this task:
+
+. Place your cursor on the line that starts with "Jan 13 09:57:01".
+. Start recording into the "l register with ql.
+. Normalise your cursor position to the beginning of the line by typing 0.
+. Position your cursor on the space just after the timestamp by typing tw.
+. Now delete all the text up to "SRC=". You can do this with dtS.
+. Now delete SRC with dw.
+. Next, replace "=" with a comma: r,.
+. Position the cursor after the IP address with f<SPACE>.
+. Delete the text upto "DPT=" with d/DPT<ENTER>.
+. Now delete DPT with dw.
+. Next, replace "=" with a comma: r,.
+. Position the cursor after the port number with f<SPACE>.
+. Delete the remaining text on the line with D.
+. Now position the cursor on the next line with j so the macro can be easily repeated.
+. Finally type q to stop recording the macro.
+
+You can examine the contents of your macro by looking at the "l register with :reg l<ENTER>.
+Here is what it should look like:
+
+0twdtSdwr,f d/DPTdwr,f Dj
+
+As always, there are other ways to accomplish the same task.
+Just on simple example is using 2cw,<ESCAPE> to change "SRC=" to "," instead of using dwr,.
+Take a moment and think of other ways to alter this macro and get the same result.
+
+Test your macro on the next line by typing @l.
+If it looks correct, continue with @@ until all the lines are in the desired format.
+
+Condense Data From Multiple Lines into a Single Line
+
+Remember that macros are just a series of recorded keystrokes.
+Even though you've been working on macros that manipulate single line, you can as easily manipulate multiple lines.
+Let's say you want to turn these three lines into one line.
+
+Before:
+Country China
+1,380,950,000 people
+
+After:
+1,380,950,000;China
+
+Here is one way to accomplish this task:
+. Place your cursor on the line that reads "Country China".
+. Start recording into the "c register with qc.
+. Normalise your cursor position to the beginning of the line by typing 0.
+. Delete the word "Country" with dw.
+. Move to the line below with j.
+. Cut the number into the unnamed register with dW.
+. Move up to the original line with k.
+. Paste the number before your cursor position with P.
+. Replace the space with a semicolon by typing r;.
+. Move to the line below with j.
+. Delete the current line and the next line with 2dd.
+. Finally type q to stop recording the macro.
+
+You can examine the contents of your macro by looking at the "c register with :reg c<ENTER>.
+Here is what it should look like:
+
+"c 0dwjdWkPr;j2dd
+
+Now use a count to repeat the macor 4 times to format the rest of the data in this se.
+Type 4@c.
+
+As always, there are multiple ways to achieve the same result in Vim.
+
+Extract Data from HTML
+
+Here are a list of links (<a> tags) on a single line of HTML.
+
+<a href="#">@armyspy.com</a><a href="#">@cuvox.de</a><a href="#">@dayrep.com</a><a href="#">@einrot.com</a><a href="#">@fleckens.hu</a><a href="#">@gustr.com</a><a href="#">@jourrapide.com</a><a href="#">@rhyta.com</a><a href="#">@superrito.com</a><a href="#">@teleworm.us</a>
+
+The goal is to convert those links to the following
+
+armyspy.com
+cuvox.de
+dayrep.com
+einrot.com
+fleckens.hu
+gustr.com
+jourrapide.com
+rhyta.com
+superrito.com
+teleworm.us
+
+Here is one way to accomplish this task:
+. Place your cursor at the beginning of the line that starts with "<a". Start recording into the "q register with qq
+. Delete the text up to and including @ with df@.
+. Position the cursor under the < with f<.
+. Replace </a> with <ENTER> by typing cf><ENTER><ESCAPE>.
+. Finally type q to stop recording the macro.
+
+You can examine the contents of your macro by looking at the "q register with "reg q<ENTER>.
+Here is what it should look like:
+
+"q 0df@f<cf>
+
+Execute the macro with @q.
+Keep repeating the macro with @@ until you are left with the desired text.
+
+Exit out of Vim
+If you want to abandon your changes so you can try this practice exercise again, use :q!<ENTER>.

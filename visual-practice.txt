@@ -40,3 +40,226 @@ Please, comment us out!
 >
 
 This training is provided by LinuxTrainingAcademy.com.
+
+Visual Mode
+
+Goal:
+
+The goal of this exercise is to practice using Vim's visual mode.
+
+Instructions:
+
+Open the visual-practice.txt file
+
+First, start a command line session on your local machine.
+Next, use vim to open the "visual-practice.txt" file that came in the course downloads.
+To do that, navigate to the location of the file.
+Remember this could be different for you depending on where you extracted the contents of the file.
+This example assumes the course download was saved into your Downloads folder and extracted from there.
+
+cd Downloads
+cd vimclass
+vim visual-practice.txt
+
+Characterwise Visual Mode
+
+Use characterwise visual mode to delete the text between "=>" and "<=".
+The original line is:
+
+Use characterwise visual mode to delete this => DELETE ME, DELETE ME, Yes!!!<=
+
+After your edits the line should look like this:
+
+Use characterwise visual mode to delete this =><=
+
+Position your cursor at the space before "DELETE".
+One way to do that is to the till command with by typing tD.
+Next, start characterwise visual mode by typing v.
+Visually highlight the text up until "<".
+You can do this by pressing l, using the w motion, using a forward search with / etc.
+It's your choice.
+Be sure to not select the < character.
+Remove the text by typing d.
+
+Place this sentence into the unnamed register.
+"Yank this sentence."
+Do not include the space after sentence in register.
+First, position your cursor anywhere in that sentence.
+(For example, you could have typed jj0 to position your cursor at the beginning of that line and sentence.)
+Next, yank the sentence with yis, which stands for yank inner sentence.
+
+Examine the contents of the unnamed register with :reg "<ENTER>.
+Here is what it should look like"
+
+Yank this sentence.
+
+Linewise Visual Mode
+
+Place all the following lines onto a single line using linewise visual mode:
+
+This entire paragraph should be on the same line.
+But it isn't!
+I don't know who typed this, but they didn't do a
+very
+good
+job.
+Did they?
+
+After your commands all the text will be on one line like so:
+
+This entire paragraph should be on the same line.
+But it isn't!
+I don't know who typed this, but they didn't do a
+very
+good
+job.
+Did they?
+
+(NOTE: The text is most likely wrapped unless you have a really, really, large monitor.
+You can also verify this text is all on one line with :set nu<ENTER>.)
+
+Start off by placing your cursor anywhere on the first line:
+
+This entire paragraph should be on the same line.
+
+This entire paragraph should be on the same line.  But it isn't!  I don't know who typed this, but they didn't do a very good job.  Did they?
+
+Next, enter linewise visual mode by typing V.
+Select the entire paragraph with ip, which stands for inner paragraph.
+Finally, join all the lines with the join command by typing J.
+
+Modify the following text from:
+
+################################################################################
+Header
+Description
+################################################################################
+
+To:
+################################################################################
+                                     HEADER
+                                  DESCRIPTION
+################################################################################
+
+First, position your cursor on the line that reads: "Header".
+Next, start linewise visual mode with V.
+Select the current and next line by pressing j.
+Change the call to all uppercase by typing U.
+Reselect the lines gv.
+Center the selected text by typing :center<ENTER>.
+
+Blockwise Visual Mode
+
+Change the following comma separated value list from:
+
+Rank,Item
+"001","Q-Tips"
+"002","Paper Towels"
+"003","Toilet Paper"
+"004","Liquid Detergent"
+"005","Mouthwash"
+"006","Cereal"
+"007","Bottled Water"
+
+To:
+
+Rank,Item
+1,"Q-Tips"
+2,"Paper Towels"
+3,"Toilet Paper"
+4,"Liquid Detergent"
+5,"Mouthwash"
+6,"Cereal"
+7,"Bottled Water"
+
+To do this place your cursor at the beginning of this line:
+
+"001","Q-Tips"
+
+Next, start blockwise visual mode by typing Ctrl+v.
+Move over 2 columns by typing l twice.
+Next move down to the following line: "007","Bottled Water".
+(You can do that by pressing j six times.)
+Now delete the highlighted text with the delete command by typing d or x.
+Notice that the text was deleted and you are back in normal mode.
+
+Mover your cursor to the right on column by typing l.
+Start blockwise visual mode by typing Ctrl+v.
+Move down to the following line: 7","Bottled Water".
+Do that by pressing j six times.
+Now delete the highlighted text with the delete command by typing d or x.
+
+Next, use blockwise visual mode to place a # at the beginning of each of the following lines.
+
+Before:
+
+This is a comment.
+So is this.
+Why, this is also a comment.
+Please, comment us out!
+
+After:
+
+# This is a comment.
+# So is this.
+# Why, this is also a comment.
+# Please, comment us out!
+
+First, position your cursor under T on the line that reads: This is a comment.
+Next, start blockwise visual mode by typing Ctrl+v.
+Now highlight the first character of the next three lines by typing jjj.
+Finally, insert # by typing I followed by #<SPACE><ESCAPE>.
+
+Next change these lines:
+
+# This is a comment.
+# So is this.
+# Why, this is also a comment.
+# Please, comment us out!
+
+To this:
+
+" This is a comment.
+" So is this.
+" Why, this is also a comment.
+" Please, comment us out!
+
+(NOTE: a double quote represents a comment in a vimrc file.)
+
+You can quickly reslect an area by typing gv.
+To change the selected instances of # to ", type c"<ESCAPE>.
+
+Let's say you want to append #EOL to each of the following lines using visual mode:
+
+>
+>>>
+>>>>>
+>>>>>>>
+>>>>>>>>>>
+>>>>>>>
+>>>>>
+>>>>
+>
+
+After your edit the lines will look like this:
+
+> # EOL
+>>> # EOL
+>>>>> # EOL
+>>>>>>> # EOL
+>>>>>>>>>> # EOL
+>>>>>>> # EOL
+>>>>> # EOL
+>>>> # EOL
+> # EOL
+
+To do that position your cursor on the very first line in the first column. (27gg, for example.)
+Start blockwise visual mode with Ctrl+v.
+Type j 8 times to select the entire first column of this block of text.
+Now type $ to select the text to the end of each line.
+Finally type A to start appending text and then type <SPACE>#<SPACE>EOL<ESCAPE>.
+Now each line will have #EOL appended to it.
+
+Exit out of Vim
+
+If you want to abandon your changes so you cna try this practice exercise again, use :q!<ENTER>.
