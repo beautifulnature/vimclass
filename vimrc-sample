@@ -12,7 +12,7 @@ set history=1000
 " Show the line and column number of the cursor position
 set ruler
 
-" Display the incomplete commands in the bottom right-hand side of your screen.  
+" Display the incomplete commands in the bottom right-hand side of your screen.
 set showcmd
 
 " Display completion matches on your status line
@@ -72,7 +72,7 @@ colorscheme slate
 " Remap VIM 0 to first non-blank character
 " map 0 ^
 
-" Easily create HTML unorded lists. 
+" Easily create HTML unorded lists.
 map <F3> i<ul><CR><Space><Space><li></li><CR><Esc>I</ul><Esc>kcit
 map <F4> <Esc>o<li></li><Esc>cit
 
@@ -84,3 +84,109 @@ let mapleader=","
 map <leader>w :w!<cr>
 
 " For more options see ":help option-list" and ":options".
+
+Vim Settings and the Vimrc file
+
+Goal:
+
+The goal of thi exercise is to create your own vimrc file with your own desired customisations.
+
+Instructions:
+
+Open the sample vimrc file.
+
+First, start a command line session on your local machine.
+Next, use vim to open the "vimrc-sample" file that cam in the course downloads.
+To do that, navigate to the location of the file.
+Remember this could be different for you depending on where you extracted the contents of the file.
+This example assumes the course download was saved into your Downloads folder and extracted from there.
+
+cd Downloads
+cd vimclass
+vim vimrc-sample
+
+Try the various options and Settings
+
+Look through the file and read the comments for each option along the way.
+For example, here is the ruler option:
+
+" Show the line and column number of the cursor position
+set ruler
+
+If the option sounds like something you might use, read the help documentation for the command.
+When getting help, remember to use single quotes around the option name so you are taken to the option documentation and not some other related documentation.
+For example, to get more information about the ruler option type:
+
+:h 'ruler'<ENTER>
+
+If after reading the detailed description of the option and you want to try it, enable with the set command.
+To enable a boolean option use set option-name like so:
+
+:set ruler<ENTER>
+
+Remember you can use Ctrl+ww to switch between the open windows.
+If you decide not to use the option, comment it out by prepending a double quotation mark (") to the beginning of the line like so:
+
+" Show the line and column number of the cursor position
+" set ruler
+
+Save your changes to the vimrc-sample file
+
+Save your changes with :w<ENTER>
+
+Copy the contents of the vimrc-sample file into a register
+
+Now, copy the contents of the vimrc-sample into a register so you can use it later paste it into your own vimrc file.
+Yank it inot the "v register with gg"vyG.
+Here is how that command breaks down:
+
+gg -- position cursor at the beginning of the file
+"v - use the "v register
+yG - yank the motion G, which is the last line of the file.
+
+Create your own vimrc file.
+
+The easiest way to open your vimrc file is to first start vim.
+If you're following along vim is already running.
+From there use the :e comand.
+
+Mac, Linux, or Unix Users only
+
+If you're working on a Mac, Linux or Unix system your vimrc file is named .vimrc.
+To edit it, type :e ~/.vimrc
+
+:e ~/.vimrc
+
+By the way, the ~ is a shorcut that represents home directory.
+The / is the directory separator and finally .vimrc is the file.
+On my Mac, my username is jason and my home directory is /Users/Jason.
+
+Windows Users Only
+
+If you're working on Windows system your vimrc file is name _vimrc.
+To edit it, type :e ~/_vimrc
+
+:e ~/_vimrc
+
+Even though ~/ is a unix based convention, it works on windows system with vim.
+By the way, the ~ is a shortcut that represents your hoem directory.
+The / is the directory seaparator and finally _vimrc is the file.
+On my Windows system, my user name is jason and my home directory is C:\Users\jason.
+In this example ~/_vimrc is actually /Users/jason/_vimrc.
+
+Paste the contents of the vimrc-sample file into your vimrc file
+
+Use the put command to paste the contents of the vimrc-sample file which was saved into register "v.
+Use "vp or "vP.
+
+Save your changes with :w<ENTER>
+
+Add more customisations if wanted
+
+Now you have your very own personalised vimrc file with your preferences.
+If you want to explore more options and settings use :h option-list and/or :options.
+Add any more desired customisations to your vimrc file.
+
+Save and exit
+
+When you are done editing your vimrc file write your changes and quit with :wq!<ENTER>.

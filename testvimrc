@@ -1,0 +1,409 @@
+version 6.0
+if &cp | set nocp | endif
+let s:cpo_save=&cpo
+set cpo&vim
+noremap! <silent> <expr> <Plug>(_is-nohlsearch) is#auto_nohlsearch(1)
+inoremap <silent> <C-Tab> =UltiSnips#ListSnippets()
+cmap <C-K> <Plug>(is-scroll-b)
+cmap <C-J> <Plug>(is-scroll-f)
+inoremap <silent> <Plug>(fzf-maps-i) :call fzf#vim#maps('i', 0)
+inoremap <expr> <Plug>(fzf-complete-buffer-line) fzf#vim#complete#buffer_line()
+inoremap <expr> <Plug>(fzf-complete-line) fzf#vim#complete#line()
+inoremap <expr> <Plug>(fzf-complete-file-ag) fzf#vim#complete#path('ag -l -g ""')
+inoremap <expr> <Plug>(fzf-complete-file) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -type f -print -o -type l -print | sed 's:^..::'")
+inoremap <expr> <Plug>(fzf-complete-path) fzf#vim#complete#path("find . -path '*/\.*' -prune -o -print | sed '1d;s:^..::'")
+inoremap <expr> <Plug>(fzf-complete-word) fzf#vim#complete#word()
+inoremap <expr> <Left> pumvisible() ? "" : "<Left>"
+inoremap <expr> <Right> pumvisible() ? "" : "<Right>"
+inoremap <F7> :set list!
+inoremap <F6> :set relativenumber!
+inoremap <F5> :setlocal spell!
+inoremap <expr> <Up> pumvisible() ? "" : "<Up>"
+inoremap <expr> <Down> pumvisible() ? "" :"<Down>"
+snoremap <silent>  "_c
+nnoremap  
+xnoremap <silent> 	 :call UltiSnips#SaveLastVisualSelection()gvs
+snoremap <silent> 	 :call UltiSnips#ExpandSnippetOrJump()
+vnoremap <NL> :m '>+1gv=gv
+nnoremap <NL> :m .+1==
+vnoremap  :m '<-2gv=gv
+nnoremap  :m .-2==
+nnoremap  
+nnoremap <silent>  :FZF -m
+snoremap  "_c
+nmap m <Plug>(zoom-toggle)
+nmap  * :execute 'noautocmd vimgrep /\V' . substitute(escape(expand("<cword>"), '\'), '\n', '\\n', 'g') . '/ **'
+xmap  R "sy gvgr :cfdo %s/s//g | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+nnoremap  R :let @s='\<'.expand('<cword>').'\>' :Grepper -cword -noprompt :cfdo %s/s//g | update<Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+noremap <silent>  f :Fern . -drawer -reveal=% -toggle -width=35
+nnoremap <silent>  l :Lines
+nnoremap <silent>   :Buffers
+vnoremap  tc c=system('tcc', getreg('"'))[:-2]
+nnoremap <silent>  c :call QuickFix_toggle()
+nnoremap  sp :normal! mz[s1z=`z
+map  sv :source $MYVIMRC
+map  ev :tabnew $MYVIMRC
+xnoremap  g gqa
+nnoremap  g gqap
+map    :let @/=''
+xnoremap  rc :s///gc<Left><Left><Left>
+xnoremap  r :s///g<Left><Left>
+nnoremap  rc :%s///gc<Left><Left><Left>
+nnoremap  r :%s///g<Left><Left>
+map  w :w!
+omap # <Plug>(is-#)
+nmap # <Plug>(is-#)
+omap <silent> % <Plug>(MatchitOperationForward)
+xmap <silent> % <Plug>(MatchitVisualForward)
+nmap <silent> % <Plug>(MatchitNormalForward)
+omap * <Plug>(is-*)
+nmap * <Plug>(is-*)
+nmap <p <Plug>(unimpaired-put-below-leftward)
+nmap <P <Plug>(unimpaired-put-above-leftward)
+nmap <s <Plug>(unimpaired-enable)
+nmap =p <Plug>(unimpaired-put-below-reformat)
+nmap =P <Plug>(unimpaired-put-above-reformat)
+nmap =s <Plug>(unimpaired-toggle)
+nmap >p <Plug>(unimpaired-put-below-rightward)
+nmap >P <Plug>(unimpaired-put-above-rightward)
+nmap >s <Plug>(unimpaired-disable)
+xmap F <Plug>(QuickScopeF)
+omap F <Plug>(QuickScopeF)
+nmap F <Plug>(QuickScopeF)
+omap N <Plug>(is-N)
+xmap N <Plug>(is-N)
+nmap N <Plug>(is-N)
+xmap T <Plug>(QuickScopeT)
+omap T <Plug>(QuickScopeT)
+nmap T <Plug>(QuickScopeT)
+noremap X "_x
+nmap [c <Plug>(signify-prev-hunk)
+nmap [xx <Plug>(unimpaired-xml-encode-line)
+xmap [x <Plug>(unimpaired-xml-encode)
+nmap [x <Plug>(unimpaired-xml-encode)
+nmap [uu <Plug>(unimpaired-url-encode-line)
+xmap [u <Plug>(unimpaired-url-encode)
+nmap [u <Plug>(unimpaired-url-encode)
+nmap [CC <Plug>(unimpaired-string-encode-line)
+xmap [C <Plug>(unimpaired-string-encode)
+nmap [C <Plug>(unimpaired-string-encode)
+nmap [yy <Plug>(unimpaired-string-encode-line)
+xmap [y <Plug>(unimpaired-string-encode)
+nmap [y <Plug>(unimpaired-string-encode)
+nmap [P <Plug>(unimpaired-put-above)
+nmap [p <Plug>(unimpaired-put-above)
+nmap [o <Plug>(unimpaired-enable)
+xmap [e <Plug>(unimpaired-move-selection-up)
+nmap [e <Plug>(unimpaired-move-up)
+nmap [  <Plug>(unimpaired-blank-up)
+omap [n <Plug>(unimpaired-context-previous)
+xmap [n <Plug>(unimpaired-context-previous)
+nmap [n <Plug>(unimpaired-context-previous)
+nmap [f <Plug>(unimpaired-directory-previous)
+nmap [<C-T> <Plug>(unimpaired-ptprevious)
+nmap [ <Plug>(unimpaired-ptprevious)
+nmap [T <Plug>(unimpaired-tfirst)
+nmap [t <Plug>(unimpaired-tprevious)
+nmap [<C-Q> <Plug>(unimpaired-cpfile)
+nmap [ <Plug>(unimpaired-cpfile)
+nmap [Q <Plug>(unimpaired-cfirst)
+nmap [q <Plug>(unimpaired-cprevious)
+nmap [<C-L> <Plug>(unimpaired-lpfile)
+nmap [ <Plug>(unimpaired-lpfile)
+nmap [L <Plug>(unimpaired-lfirst)
+nmap [l <Plug>(unimpaired-lprevious)
+nmap [B <Plug>(unimpaired-bfirst)
+nmap [b <Plug>(unimpaired-bprevious)
+nmap [A <Plug>(unimpaired-first)
+nmap [a <Plug>(unimpaired-previous)
+omap <silent> [% <Plug>(MatchitOperationMultiBackward)
+xmap <silent> [% <Plug>(MatchitVisualMultiBackward)
+nmap <silent> [% <Plug>(MatchitNormalMultiBackward)
+nmap ]c <Plug>(signify-next-hunk)
+nmap ]xx <Plug>(unimpaired-xml-decode-line)
+xmap ]x <Plug>(unimpaired-xml-decode)
+nmap ]x <Plug>(unimpaired-xml-decode)
+nmap ]uu <Plug>(unimpaired-url-decode-line)
+xmap ]u <Plug>(unimpaired-url-decode)
+nmap ]u <Plug>(unimpaired-url-decode)
+nmap ]CC <Plug>(unimpaired-string-decode-line)
+xmap ]C <Plug>(unimpaired-string-decode)
+nmap ]C <Plug>(unimpaired-string-decode)
+nmap ]yy <Plug>(unimpaired-string-decode-line)
+xmap ]y <Plug>(unimpaired-string-decode)
+nmap ]y <Plug>(unimpaired-string-decode)
+nmap ]P <Plug>(unimpaired-put-below)
+nmap ]p <Plug>(unimpaired-put-below)
+nmap ]o <Plug>(unimpaired-disable)
+xmap ]e <Plug>(unimpaired-move-selection-down)
+nmap ]e <Plug>(unimpaired-move-down)
+nmap ]  <Plug>(unimpaired-blank-down)
+omap ]n <Plug>(unimpaired-context-next)
+xmap ]n <Plug>(unimpaired-context-next)
+nmap ]n <Plug>(unimpaired-context-next)
+nmap ]f <Plug>(unimpaired-directory-next)
+nmap ]<C-T> <Plug>(unimpaired-ptnext)
+nmap ] <Plug>(unimpaired-ptnext)
+nmap ]T <Plug>(unimpaired-tlast)
+nmap ]t <Plug>(unimpaired-tnext)
+nmap ]<C-Q> <Plug>(unimpaired-cnfile)
+nmap ] <Plug>(unimpaired-cnfile)
+nmap ]Q <Plug>(unimpaired-clast)
+nmap ]q <Plug>(unimpaired-cnext)
+nmap ]<C-L> <Plug>(unimpaired-lnfile)
+nmap ] <Plug>(unimpaired-lnfile)
+nmap ]L <Plug>(unimpaired-llast)
+nmap ]l <Plug>(unimpaired-lnext)
+nmap ]B <Plug>(unimpaired-blast)
+nmap ]b <Plug>(unimpaired-bnext)
+nmap ]A <Plug>(unimpaired-last)
+nmap ]a <Plug>(unimpaired-next)
+omap <silent> ]% <Plug>(MatchitOperationMultiForward)
+xmap <silent> ]% <Plug>(MatchitVisualMultiForward)
+nmap <silent> ]% <Plug>(MatchitNormalMultiForward)
+xmap a% <Plug>(MatchitVisualTextObject)
+nmap cp :let @+ = expand("%")
+xmap f <Plug>(QuickScopef)
+omap f <Plug>(QuickScopef)
+nmap f <Plug>(QuickScopef)
+nmap gcu <Plug>Commentary<Plug>Commentary
+nmap gcc <Plug>CommentaryLine
+omap gc <Plug>Commentary
+nmap gc <Plug>Commentary
+xmap gc <Plug>Commentary
+omap g# <Plug>(is-g#)
+xmap g# <Plug>(is-g#)
+nmap g# <Plug>(is-g#)
+omap g* <Plug>(is-g*)
+xmap g* <Plug>(is-g*)
+nmap g* <Plug>(is-g*)
+xmap gr <Plug>(GrepperOperator)
+omap <silent> g% <Plug>(MatchitOperationBackward)
+xmap <silent> g% <Plug>(MatchitVisualBackward)
+nmap <silent> g% <Plug>(MatchitNormalBackward)
+noremap j gj
+noremap k gk
+omap n <Plug>(is-n)
+xmap n <Plug>(is-n)
+nmap n <Plug>(is-n)
+xnoremap p pgvy
+xnoremap <silent> s* "sy:let @/=@scgn
+nnoremap <silent> s* :let @/='\<'.expand('<cword>').'\>'cgn
+xmap t <Plug>(QuickScopet)
+omap t <Plug>(QuickScopet)
+nmap <silent> t<C-V> :TestVisit
+nmap <silent> t :TestVisit
+nmap <silent> t<C-L> :TestLast
+nmap <silent> t :TestLast
+nmap <silent> t<C-A> :TestSuite
+nmap <silent> t :TestSuite
+nmap <silent> t<C-F> :TestFile
+nmap <silent> t :TestFile
+nmap <silent> t<C-N> :TestNearest
+nmap <silent> t :TestNearest
+noremap x "_x
+nmap yo <Plug>(unimpaired-toggle)
+vmap y ygv
+nmap zuz <Plug>(FastFoldUpdate)
+xnoremap <silent> <Plug>(_is-nohlsearch) :nohlsearchgv
+nnoremap <silent> <Plug>(_is-nohlsearch) :nohlsearch
+snoremap <silent> <expr> <Plug>(_is-nohlsearch) is#auto_nohlsearch(1)
+onoremap <silent> <expr> <Plug>(_is-nohlsearch) is#auto_nohlsearch(1)
+nnoremap <SNR>117_: :=v:count ? v:count : ''
+snoremap <C-R> "_c
+snoremap <silent> <C-H> "_c
+snoremap <silent> <Del> "_c
+snoremap <silent> <BS> "_c
+snoremap <silent> <C-Tab> :call UltiSnips#ListSnippets()
+xnoremap <silent> <Plug>(Limelight) :Limelight
+nnoremap <silent> <Plug>(Limelight) :set opfunc=limelight#operatorg@
+xnoremap <silent> <Plug>(signify-motion-outer-visual) :call sy#util#hunk_text_object(1)
+onoremap <silent> <Plug>(signify-motion-outer-pending) :call sy#util#hunk_text_object(1)
+xnoremap <silent> <Plug>(signify-motion-inner-visual) :call sy#util#hunk_text_object(0)
+onoremap <silent> <Plug>(signify-motion-inner-pending) :call sy#util#hunk_text_object(0)
+nnoremap <silent> <expr> <Plug>(signify-prev-hunk) &diff ? '[c' : ":\call sy#jump#prev_hunk(v:count1)\"
+nnoremap <silent> <expr> <Plug>(signify-next-hunk) &diff ? ']c' : ":\call sy#jump#next_hunk(v:count1)\"
+nnoremap <silent> <Plug>(FastFoldUpdate) :FastFoldUpdate!
+nnoremap <silent> <Plug>unimpairedTPNext :exe "p".(v:count ? v:count : "")."tnext"
+nnoremap <silent> <Plug>unimpairedTPPrevious :exe "p".(v:count ? v:count : "")."tprevious"
+nnoremap <silent> <Plug>(unimpaired-ptnext) :exe v:count1 . "ptnext"
+nnoremap <silent> <Plug>(unimpaired-ptprevious) :exe v:count1 . "ptprevious"
+nnoremap <silent> <Plug>unimpairedTLast :exe "".(v:count ? v:count : "")."tlast"
+nnoremap <silent> <Plug>unimpairedTFirst :exe "".(v:count ? v:count : "")."tfirst"
+nnoremap <silent> <Plug>unimpairedTNext :exe "".(v:count ? v:count : "")."tnext"
+nnoremap <silent> <Plug>unimpairedTPrevious :exe "".(v:count ? v:count : "")."tprevious"
+nnoremap <Plug>(unimpaired-tlast) :=v:count ? v:count . "trewind" : "tlast"
+nnoremap <Plug>(unimpaired-tfirst) :=v:count ? v:count . "trewind" : "tfirst"
+nnoremap <silent> <Plug>(unimpaired-tnext) :exe "".(v:count ? v:count : "")."tnext"
+nnoremap <silent> <Plug>(unimpaired-tprevious) :exe "".(v:count ? v:count : "")."tprevious"
+nnoremap <silent> <Plug>unimpairedQNFile :exe "".(v:count ? v:count : "")."cnfile"zv
+nnoremap <silent> <Plug>unimpairedQPFile :exe "".(v:count ? v:count : "")."cpfile"zv
+nnoremap <silent> <Plug>(unimpaired-cnfile) :exe "".(v:count ? v:count : "")."cnfile"zv
+nnoremap <silent> <Plug>(unimpaired-cpfile) :exe "".(v:count ? v:count : "")."cpfile"zv
+nnoremap <silent> <Plug>unimpairedQLast :exe "".(v:count ? v:count : "")."clast"zv
+nnoremap <silent> <Plug>unimpairedQFirst :exe "".(v:count ? v:count : "")."cfirst"zv
+nnoremap <silent> <Plug>unimpairedQNext :exe "".(v:count ? v:count : "")."cnext"zv
+nnoremap <silent> <Plug>unimpairedQPrevious :exe "".(v:count ? v:count : "")."cprevious"zv
+nnoremap <Plug>(unimpaired-clast) :=v:count ? v:count . "cc" : "clast"zv
+nnoremap <Plug>(unimpaired-cfirst) :=v:count ? v:count . "cc" : "cfirst"zv
+nnoremap <silent> <Plug>(unimpaired-cnext) :exe "".(v:count ? v:count : "")."cnext"zv
+nnoremap <silent> <Plug>(unimpaired-cprevious) :exe "".(v:count ? v:count : "")."cprevious"zv
+nnoremap <silent> <Plug>unimpairedLNFile :exe "".(v:count ? v:count : "")."lnfile"zv
+nnoremap <silent> <Plug>unimpairedLPFile :exe "".(v:count ? v:count : "")."lpfile"zv
+nnoremap <silent> <Plug>(unimpaired-lnfile) :exe "".(v:count ? v:count : "")."lnfile"zv
+nnoremap <silent> <Plug>(unimpaired-lpfile) :exe "".(v:count ? v:count : "")."lpfile"zv
+nnoremap <silent> <Plug>unimpairedLLast :exe "".(v:count ? v:count : "")."llast"zv
+nnoremap <silent> <Plug>unimpairedLFirst :exe "".(v:count ? v:count : "")."lfirst"zv
+nnoremap <silent> <Plug>unimpairedLNext :exe "".(v:count ? v:count : "")."lnext"zv
+nnoremap <silent> <Plug>unimpairedLPrevious :exe "".(v:count ? v:count : "")."lprevious"zv
+nnoremap <Plug>(unimpaired-llast) :=v:count ? v:count . "ll" : "llast"zv
+nnoremap <Plug>(unimpaired-lfirst) :=v:count ? v:count . "ll" : "lfirst"zv
+nnoremap <silent> <Plug>(unimpaired-lnext) :exe "".(v:count ? v:count : "")."lnext"zv
+nnoremap <silent> <Plug>(unimpaired-lprevious) :exe "".(v:count ? v:count : "")."lprevious"zv
+nnoremap <silent> <Plug>unimpairedBLast :exe "".(v:count ? v:count : "")."blast"
+nnoremap <silent> <Plug>unimpairedBFirst :exe "".(v:count ? v:count : "")."bfirst"
+nnoremap <silent> <Plug>unimpairedBNext :exe "".(v:count ? v:count : "")."bnext"
+nnoremap <silent> <Plug>unimpairedBPrevious :exe "".(v:count ? v:count : "")."bprevious"
+nnoremap <Plug>(unimpaired-blast) :=v:count ? v:count . "buffer" : "blast"
+nnoremap <Plug>(unimpaired-bfirst) :=v:count ? v:count . "buffer" : "bfirst"
+nnoremap <silent> <Plug>(unimpaired-bnext) :exe "".(v:count ? v:count : "")."bnext"
+nnoremap <silent> <Plug>(unimpaired-bprevious) :exe "".(v:count ? v:count : "")."bprevious"
+nnoremap <silent> <Plug>unimpairedALast :exe "".(v:count ? v:count : "")."last"
+nnoremap <silent> <Plug>unimpairedAFirst :exe "".(v:count ? v:count : "")."first"
+nnoremap <silent> <Plug>unimpairedANext :exe "".(v:count ? v:count : "")."next"
+nnoremap <silent> <Plug>unimpairedAPrevious :exe "".(v:count ? v:count : "")."previous"
+nnoremap <Plug>(unimpaired-last) :=v:count ? v:count . "argument" : "last"
+nnoremap <Plug>(unimpaired-first) :=v:count ? v:count . "argument" : "first"
+nnoremap <silent> <Plug>(unimpaired-next) :exe "".(v:count ? v:count : "")."next"
+nnoremap <silent> <Plug>(unimpaired-previous) :exe "".(v:count ? v:count : "")."previous"
+nmap <silent> <Plug>CommentaryUndo :echoerr "Change your <Plug>CommentaryUndo map to <Plug>Commentary<Plug>Commentary"
+xnoremap <silent> <Plug>(GrepperOperator) :call GrepperOperator(visualmode())
+nnoremap <silent> <Plug>(GrepperOperator) :set opfunc=GrepperOperatorg@
+map <Plug>(is-g#) <Plug>(is-nohl)<Plug>(_is-g#)
+map <Plug>(is-g*) <Plug>(is-nohl)<Plug>(_is-g*)
+map <Plug>(is-#) <Plug>(is-nohl)<Plug>(_is-#)
+map <Plug>(is-*) <Plug>(is-nohl)<Plug>(_is-*)
+map <Plug>(is-N) <Plug>(is-nohl)<Plug>(_is-N)
+map <Plug>(is-n) <Plug>(is-nohl)<Plug>(_is-n)
+noremap <Plug>(_is-g#) g#
+noremap <Plug>(_is-g*) g*
+noremap <Plug>(_is-#) #
+noremap <Plug>(_is-*) *
+noremap <Plug>(_is-N) N
+noremap <Plug>(_is-n) n
+map <Plug>(is-nohl) <Plug>(is-nohl-2)
+noremap <expr> <Plug>(is-nohl-3) is#auto_nohlsearch(3)
+noremap <expr> <Plug>(is-nohl-2) is#auto_nohlsearch(2)
+noremap <expr> <Plug>(is-nohl-1) is#auto_nohlsearch(1)
+noremap <expr> <Plug>(is-scroll-b) is#scroll_count(0, @/) . 'Nzz'
+noremap <expr> <Plug>(is-scroll-f) is#scroll_count(1, @/) . 'nzz'
+xnoremap <silent> <Plug>(QuickScopeToggle) :call quick_scope#Toggle()
+nnoremap <silent> <Plug>(QuickScopeToggle) :call quick_scope#Toggle()
+nnoremap <silent> <Plug>(QuickScopeT) :call quick_scope#Ready() | execute "normal!" v:count1 . quick_scope#Aim("T") | call quick_scope#Reload() | call quick_scope#DoubleTap()
+xnoremap <expr> <Plug>(QuickScopeT) quick_scope#Ready() . quick_scope#Aim("T") . quick_scope#Reload() . quick_scope#DoubleTap()
+onoremap <expr> <Plug>(QuickScopeT) quick_scope#Ready() . quick_scope#Aim("T") . quick_scope#Reload() . quick_scope#DoubleTap()
+nnoremap <silent> <Plug>(QuickScopet) :call quick_scope#Ready() | execute "normal!" v:count1 . quick_scope#Aim("t") | call quick_scope#Reload() | call quick_scope#DoubleTap()
+xnoremap <expr> <Plug>(QuickScopet) quick_scope#Ready() . quick_scope#Aim("t") . quick_scope#Reload() . quick_scope#DoubleTap()
+onoremap <expr> <Plug>(QuickScopet) quick_scope#Ready() . quick_scope#Aim("t") . quick_scope#Reload() . quick_scope#DoubleTap()
+nnoremap <silent> <Plug>(QuickScopeF) :call quick_scope#Ready() | execute "normal!" v:count1 . quick_scope#Aim("F") | call quick_scope#Reload() | call quick_scope#DoubleTap()
+xnoremap <expr> <Plug>(QuickScopeF) quick_scope#Ready() . quick_scope#Aim("F") . quick_scope#Reload() . quick_scope#DoubleTap()
+onoremap <expr> <Plug>(QuickScopeF) quick_scope#Ready() . quick_scope#Aim("F") . quick_scope#Reload() . quick_scope#DoubleTap()
+nnoremap <silent> <Plug>(QuickScopef) :call quick_scope#Ready() | execute "normal!" v:count1 . quick_scope#Aim("f") | call quick_scope#Reload() | call quick_scope#DoubleTap()
+xnoremap <expr> <Plug>(QuickScopef) quick_scope#Ready() . quick_scope#Aim("f") . quick_scope#Reload() . quick_scope#DoubleTap()
+onoremap <expr> <Plug>(QuickScopef) quick_scope#Ready() . quick_scope#Aim("f") . quick_scope#Reload() . quick_scope#DoubleTap()
+nmap <C-W>m <Plug>(zoom-toggle)
+nnoremap <silent> <Plug>(zoom-toggle) :call zoom#toggle()
+onoremap <silent> <Plug>(fzf-maps-o) :call fzf#vim#maps('o', 0)
+xnoremap <silent> <Plug>(fzf-maps-x) :call fzf#vim#maps('x', 0)
+nnoremap <silent> <Plug>(fzf-maps-n) :call fzf#vim#maps('n', 0)
+tnoremap <silent> <Plug>(fzf-normal) 
+tnoremap <silent> <Plug>(fzf-insert) i
+nnoremap <silent> <Plug>(fzf-normal) <Nop>
+nnoremap <silent> <Plug>(fzf-insert) i
+nnoremap <silent> <C-P> :FZF -m
+vnoremap <C-Down> :m '>+1gv=gv
+vnoremap <C-Up> :m '<-2gv=gv
+nnoremap <C-Down> :m .+1==
+nnoremap <C-Up> :m .-2==
+vnoremap <C-J> :m '>+1gv=gv
+vnoremap <C-K> :m '<-2gv=gv
+nnoremap <F7> :set list!
+nnoremap <F6> :set relativenumber!
+nnoremap <F5> :setlocal spell!
+nnoremap <Del> "_x
+xnoremap <Del> "_x
+onoremap <Del> "_x
+nnoremap <S-Tab> w
+nnoremap <C-J> :m .+1==
+nnoremap <C-K> :m .-2==
+nnoremap <C-H> 
+nnoremap <C-L> 
+map <F2> iJohn Smith
+noremap <Up> gk
+noremap <Down> gj
+xmap <silent> <Plug>(MatchitVisualTextObject) <Plug>(MatchitVisualMultiBackward)o<Plug>(MatchitVisualMultiForward)
+onoremap <silent> <Plug>(MatchitOperationMultiForward) :call matchit#MultiMatch("W",  "o")
+onoremap <silent> <Plug>(MatchitOperationMultiBackward) :call matchit#MultiMatch("bW", "o")
+xnoremap <silent> <Plug>(MatchitVisualMultiForward) :call matchit#MultiMatch("W",  "n")m'gv``
+xnoremap <silent> <Plug>(MatchitVisualMultiBackward) :call matchit#MultiMatch("bW", "n")m'gv``
+nnoremap <silent> <Plug>(MatchitNormalMultiForward) :call matchit#MultiMatch("W",  "n")
+nnoremap <silent> <Plug>(MatchitNormalMultiBackward) :call matchit#MultiMatch("bW", "n")
+onoremap <silent> <Plug>(MatchitOperationBackward) :call matchit#Match_wrapper('',0,'o')
+onoremap <silent> <Plug>(MatchitOperationForward) :call matchit#Match_wrapper('',1,'o')
+xnoremap <silent> <Plug>(MatchitVisualBackward) :call matchit#Match_wrapper('',0,'v')m'gv``
+xnoremap <silent> <Plug>(MatchitVisualForward) :call matchit#Match_wrapper('',1,'v'):if col("''") != col("$") | exe ":normal! m'" | endifgv``
+nnoremap <silent> <Plug>(MatchitNormalBackward) :call matchit#Match_wrapper('',0,'n')
+nnoremap <silent> <Plug>(MatchitNormalForward) :call matchit#Match_wrapper('',1,'n')
+inoremap <silent> 	 =UltiSnips#ExpandSnippetOrJump()
+cmap <NL> <Plug>(is-scroll-f)
+cmap  <Plug>(is-scroll-b)
+let &cpo=s:cpo_save
+unlet s:cpo_save
+set autoindent
+set autoread
+set background=dark
+set backspace=indent,eol,start
+set backupdir=/tmp//,.
+set clipboard=unnamedplus,unnamed
+set complete=.,w,b,u,t,i,kspell
+set completeopt=menuone,longest
+set directory=/tmp//,.
+set expandtab
+set fileencodings=ucs-bom,utf-8,default,latin1
+set hidden
+set hlsearch
+set ignorecase
+set incsearch
+set laststatus=2
+set matchpairs=(:),{:},[:],<:>
+set maxmempattern=5000
+set modelines=2
+set mouse=a
+set regexpengine=1
+set ruler
+set runtimepath=~/.vim,~/.vim/plugged/vim-one,~/.vim/plugged/gruvbox,~/.local/share/fzf,~/.vim/plugged/fzf.vim,~/.vim/plugged/vim-obsession,~/.vim/plugged/vim-zoom,~/.vim/plugged/vim-tmux-focus-events,~/.vim/plugged/fern.vim,~/.vim/plugged/fern-mapping-mark-children.vim,~/.vim/plugged/vim-eunuch,~/.vim/plugged/vim-dirdiff,~/.vim/plugged/linediff.vim,~/.vim/plugged/vim-ingo-library,~/.vim/plugged/vim-SpellCheck,~/.vim/plugged/vim-highlightedyank,~/.vim/plugged/quick-scope,~/.vim/plugged/vim-visual-star-search,~/.vim/plugged/is.vim,~/.vim/plugged/vim-grepper,~/.vim/plugged/vim-better-whitespace,~/.vim/plugged/vim-commentary,~/.vim/plugged/vim-sleuth,~/.vim/plugged/vim-unimpaired,~/.vim/plugged/FastFold,~/.vim/plugged/vim-signify,~/.vim/plugged/vim-fugitive,~/.vim/plugged/limelight.vim,~/.vim/plugged/goyo.vim,~/.vim/plugged/ultisnips,~/.vim/plugged/vim-snippets,~/.vim/plugged/AutoComplPop,~/.vim/plugged/vim-test,~/.vim/plugged/scss-syntax.vim,~/.vim/plugged/nginx.vim,~/.vim/plugged/csv.vim,~/.vim/plugged/dockerfile.vim,~/.vim/plugged/vim-elixir,~/.vim/plugged/Vim-Jinja2-Syntax,~/.vim/plugged/vim-go,~/.vim/plugged/vim-hugo,~/.vim/plugged/vim-toml,~/.vim/plugged/tabular,~/.vim/plugged/vim-markdown,~/.vim/plugged/markdown-preview.nvim,~/.vim/plugged/vim-hcl,~/.vim/plugged/pgsql.vim,~/.vim/plugged/html5.vim,~/.vim/plugged/vim-javascript,~/.vim/plugged/vim-jsx-pretty,~/.vim/plugged/i3-vim-syntax,~/.vim/plugged/vim-yaml,~/.vim/plugged/vim-tmux,~/.vim/plugged/vim-git,~/.vim/plugged/vim-liquid,~/.vim/plugged/vim-rails,~/.vim/plugged/python-syntax,~/.vim/plugged/vim-ruby,~/.vim/plugged/vim-systemd-syntax,~/.vim/plugged/vim-helm,~/.vim/plugged/vim-terraform,/var/lib/vim/addons,/etc/vim,/usr/share/vim/vimfiles,/usr/share/vim/vim82,/usr/share/vim/vim82/pack/dist/opt/matchit,/usr/share/vim/vimfiles/after,/etc/vim/after,/var/lib/vim/addons/after,~/.vim/plugged/ultisnips/after,~/.vim/plugged/vim-hugo/after,~/.vim/plugged/tabular/after,~/.vim/plugged/html5.vim/after,~/.vim/plugged/vim-javascript/after,~/.vim/plugged/vim-jsx-pretty/after,~/.vim/plugged/vim-yaml/after,~/.vim/plugged/vim-rails/after,~/.vim/after
+set scrolloff=5
+set shiftwidth=2
+set shortmess=filnxtToOc
+set showcmd
+set showmatch
+set smartcase
+set smarttab
+set softtabstop=2
+set spelllang=en_us
+set splitbelow
+set splitright
+set nostartofline
+set statusline=[%n]\ %f\ %<%{&modified\ ?\ '[+]\ '\ :\ !&modifiable\ ?\ '[x]\ '\ :\ ''}%{&readonly\ ?\ '[RO]\ '\ :\ ''}%{len(&filetype)\ ?\ '['.&filetype.']\ '\ :\ ''}%{exists('g:loaded_fugitive')\ ?\ fugitive#statusline()\ :\ ''}\ %=\ \ %-12(%l\ :\ %c%V%)\ %*\ %P
+set suffixes=.bak,~,.swp,.o,.info,.aux,.log,.dvi,.bbl,.blg,.brf,.cb,.ind,.idx,.ilg,.inx,.out,.toc
+set tabstop=2
+set termguicolors
+set ttimeout
+set ttimeoutlen=0
+set undodir=/tmp
+set undofile
+set virtualedit=block
+set visualbell
+set whichwrap=b,s,<,>
+set wildmenu
+" vim: set ft=vim :
