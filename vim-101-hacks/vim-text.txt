@@ -1,0 +1,215 @@
+# Chapter 1: Vim Basics
+
+Before we begin to review the 101 hacks, let us understand a few basics of the Vim editor.
+
+## Opening a File
+
+There are 2 methods to open a file.
+The following examples will open the /etc/passwd file.
+
+Method 1:
+Open from command line as explained above.
+
+$ vim /etc/passwd
+
+Method 2:
+
+Open from the Vim editor after launching it.
+
+$ vim
+
+:e /etc/passwd
+
+## Saving a File
+
+The following are methods to save a file.
+
+|==|==|
+|Save Methods|Description|
+|:w (or) :write|save working file|
+|:up (or) :update|save working file|
+|:w newfile.txt|save as newfile.txt|
+|:up newfile.txt|save as newfile.txt|
+|:w! newfile.txt|save a newfile.txt (with overwrite option|
+|:up! newfile.txt|save as newfile.txt (with overwrite option)|
+
+## Closing a File
+
+The following are methods to close a file and exit out of the Vim editor
+
+|==|==|
+|Quit Methods|Description|
+|`:x`|Save working file and exit|
+|`:wq`|Save working file and exit|
+|ZZ|Save working file and exit|
+|`:q!`|Exit without saving working file|
+|`:qa`|Exit all open files in the current vim session|
+
+## Types of Vim Modes
+
+There are several modes in Vim.
+For easy understanding let us separate these into 2 categories - basic modes and advanced modes.
+
+### Basic Vim Modes
+
+It is absolutely essential to understand these 3 basic modes to use the Vim editor effectively.
+
+|==|==|
+|Mode|Description|
+|Normal|The Vim editor starts in this mode, where you can execute all editor commands.|
+|Insert|This mode is for inserting text.|
+|Command Line|This mode is for execting ex commands at the bottom of the editor. For example, :wq|
+
+Let's assume you want to create a helloworld.txt with the text "Hello World!".
+The following steps explain how you do this with the help of these 3 modes.
+
+Step 1: Normal mode. Open the new file in Normal mode.
+
+$ vim helloworld.txt
+
+Step 2: Insert Mode. Go to Insert mode, and type Hello World!
+
+i
+
+Step 3: Command Line mode. Go to command line mode and type :wq to save the file and exit the editor.
+
+<ESC> :wq
+
+### Advanced Modes
+
+While these are not essential for a typical usage, it is good to understand all available Vim modes.
+
+|==|==|
+|Mode|Description|
+|Visual|You can select text (Using v, V or Ctrl-V) in visual mode and execute Vim commands|
+|Select|From :help vim-modes-intro
+"Typing a printable character deletes the selection and starts Insert mode.|
+In this mode, "--SELECT--" is shown at the bottom of the window."|
+|Ex|From :help vim-modes-intro
+"Like Command-line mode, but after entering a command you remain in Ex mode"|
+
+## Moving around a File
+
+In most applications you may be using the up, down, left and right arrow keys to do basic navigation.
+In the Vim editor, following are the basic navigation keys:
+    ^
+    k
+<h      l>
+    j
+    V
+Basic Navigation Keys
+
+|==|==|
+|Navigation Key|Description|
+|j|Down one line|
+|k|Up one line|
+|h|Move right one character|
+|l|Move left one character|
+
+As a historical note the h, j, k and l keys had arrows on thhe ADM-3A terminal, which was commonly used with early UNIX systems.
+This is why those keys were chosen for navigation.
+
+Note: If you are not comfortable with j, k, h and l keys, you can still use arrow keys to move around.
+
+## Vim Configuration File (~/.vimrc)
+
+Local Vimrc
+
+All configuration options that you define inside Vim are valid only for that particlar Vim session.
+
+For example, if you do :set number to display line numbers inside Vim, this will apply only in that particlar Vim session.
+If you exit and start the Vim editor, the line number display will not be present anymore.
+
+If you want to make your configuration settins permanent for future Vim sessions, you should add it to the ~/.vimrc file as shown below.
+
+$ vim ~/.vimrc
+
+set number
+set list
+
+Location of local vimrc file:
+
+|==|==|
+|OS|Location|
+|UNIX/Linux|$Home/.vimrc
+Example: /home/ramesh/.vimrc
+Note: On Unix ther is . (period) before vimrc|
+|Window|$HOME/_vimrc
+Example: C:\Users\ramesh\_vimrc
+Note: On Windows there is a _ (underscore) before vimrc|
+
+## Vim Version
+
+The latest stable release of Vim is 7.2 as of the first publishing of this book.
+All hacks mentioned in this book are tested against the latest stable version.
+
+Execute :version from the Vim editor to identify the version of your Vim editor.
+
+Vim version:
+
+$ vim
+
+:version
+
+## Vim Installation:
+
+Vim is the default editor on almost all Unix distribution.
+If you don't have latest Vim editor on your system, follow the instruction below to install it.
+
+Install Vim on Windows:
+
+. Go to vim.org -> Download -> PC: MS-DOS and MS-Windows -> Self installing executable -> gvim72.exe
+
+. Direct Download link: ftp://ftp.vim.org/pub/vim/pc/gvim72.exe
+. Download gvim72.exe and install it.
+
+Install Vim on Ubuntu Linux:
+
+$ sudo apt install vim-full
+
+## All about Vim Help
+
+Type :help to view the built in help documentation that comes with the Vim editor.
+
+$ vim
+
+:help
+
+While browsing the Vim help documentation keep the following in mind:
+
+. Anythin within | | is a link
+. Move your cursor to any character between | | and press Ctrl-] to go to that particlar help section.
+. For example, |quickref| is a link.
+
+|===|===|
+|Help|Description|
+|:help (or) :h|Vim built in help documentation|
+|:helpgrep pattern|Search help using pattern.
+For example, :helpgrep saveas
+
+Tip: Use :cn to jump for next occurrence of the pattern.
+|:help 'option'|Help on a Vim set option.
+
+For example: :help 'list' will give help about :set list|
+|:help CTRL-X|Help on Vim CTRL-X command.
+Use the same concept to get help on other CTRL - Vim commands.|
+|:help :x|Help on Vim :x command
+Use the same concept to get help on other : Vim commands.|
+|:help<CTRL-D>|Help on auto completion.
+For example :help<CTRL-D> will show all commands that starts with help.
+
+## Use Vimtutor for Practice
+
+The vimtutor program has built in tutor file that contains step-by-step instructions to learn the Vim editor.
+
+When you launch vimtutor, it copies the original tutor file and opens it automatically.
+You can modify this file and play around with it as you wish.
+
+$ Vimtutor
+
+By default vimtutor opens the English tutor file.
+To open a tutor file in your specific language, give the language code at the end.
+
+For example, the following opens the tutor file in Spanish.
+
+$ vimtutor es

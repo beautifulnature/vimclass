@@ -1,0 +1,99 @@
+# Chapter 1: Vim Basics
+
+Before we begin to review the 101 hacks, let us understand a few basics of the Vim editor.
+
+## Opening a File
+
+There are 2 methods to open a file.
+The following examples will open the /etc/passwd file.
+
+Method 1:
+Open from command line as explained above.
+
+$ vim /etc/passwd
+
+Method 2:
+
+Open from the Vim editor after launching it.
+
+$ vim
+
+:e /etc/passwd
+
+## Saving a File
+
+The following are methods to save a file.
+
+|==|==|
+|Save Methods|Description|
+|:w (or) :write|save working file|
+|:up (or) :update|save working file|
+|:w newfile.txt|save as newfile.txt|
+|:up newfile.txt|save as newfile.txt|
+|:w! newfile.txt|save a newfile.txt (with overwrite option|
+|:up! newfile.txt|save as newfile.txt (with overwrite option)|
+
+## Closing a File
+
+The following are methods to close a file and exit out of the Vim editor
+
+|==|==|
+|Quit Methods|Description|
+|`:x`|Save working file and exit|
+|`:wq`|Save working file and exit|
+|ZZ|Save working file and exit|
+|`:q!`|Exit without saving working file|
+|`:qa`|Exit all open files in the current vim session|
+
+## Types of Vim Modes
+
+There are several modes in Vim.
+For easy understanding let us separate these into 2 categories - basic modes and advanced modes.
+
+### Basic Vim Modes
+
+It is absolutely essential to understand these 3 basic modes to use the Vim editor effectively.
+
+|==|==|
+|Mode|Description|
+|Normal|The Vim editor starts in this mode, where you can execute all editor commands.|
+|Insert|This mode is for inserting text.|
+|Command Line|This mode is for execting ex commands at the bottom of the editor. For example, :wq|
+
+Let's assume you want to create a helloworld.txt with the text "Hello World!".
+The following steps explain how you do this with the help of these 3 modes.
+
+Step 1: Normal mode. Open the new file in Normal mode.
+
+$ vim helloworld.txt
+
+Step 2: Insert Mode. Go to Insert mode, and type Hello World!
+
+i
+
+Step 3: Command Line mode. Go to command line mode and type :wq to save the file and exit the editor.
+
+<ESC> :wq
+
+### Advanced Modes
+
+While these are not essential for a typical usage, it is good to understand all available Vim modes.
+
+|==|==|
+|Mode|Description|
+|Visual|You can select text (Using v, V or Ctrl-V) in visual mode and execute Vim commands|
+|Select|From :help vim-modes-intro
+"Typing a printable character deletes the selection and starts Insert mode.|
+In this mode, "--SELECT--" is shown at the bottom of the window."|
+|Ex|From :help vim-modes-intro
+"Like Command-line mode, but after entering a command you remain in Ex mode"|
+
+## Moving around a File
+
+In most applications you may be using the up, down, left and right arrow keys to do basic navigation.
+In the Vim editor, following are the basic navigation keys:
+  ^
+  k
+<h l>
+  j
+  V
